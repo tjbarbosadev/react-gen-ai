@@ -15,5 +15,9 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "tailwindCSS.experimental.configFile": {
+    "src/index.css": "src/**"
+  },
+  "tailwindCSS.rootFontFamily": "Inter"
 }
