@@ -18,6 +18,5 @@
   },
   "tailwindCSS.experimental.configFile": {
     "src/index.css": "src/**"
-  },
-  "tailwindCSS.rootFontFamily": "Inter"
+  }
 }
