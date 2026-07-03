@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/historico',
-        element: <h1>Historico</h1>,
+        element: <h1>Histórico</h1>,
       },
     ],
   },
