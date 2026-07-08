@@ -1,21 +1,60 @@
-import type { LucideIcon } from 'lucide-react';
+import { ArrowLeft, ArrowRight, type LucideIcon } from 'lucide-react';
 
-interface FormsStepProps {
+import Button from '@/components/shared/Button';
+import { Input, type InputProps } from '@/components/shared/Input';
+
+export interface FormsStepProps {
+  id: string;
   icon: LucideIcon;
   title: string;
   question: string;
+  inputProps: InputProps;
+  submitButtonProps?: {
+    label: string;
+    emojiIcon?: string;
+  };
 }
 
 export default function FormStep({
   icon: Icon,
   title,
   question,
+  inputProps,
+  submitButtonProps,
 }: FormsStepProps) {
   return (
     <div className="rounded-2xl bg-card p-6 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)] sm:p-8">
-      <Icon size={32} className="mb-4 h-12 w-12 text-primary" />
-      <h2 className="mb-2 text-xl font-bold">{title}</h2>
-      <p className="text-muted-foreground">{question}</p>
+      <div className="mb-4 flex h-15 w-15 items-center justify-center rounded-xl bg-primary">
+        <Icon size={32} className="text-primary-foreground" />
+      </div>
+      <h2 className="mb-1 text-xs font-semibold tracking-widest text-primary uppercase">
+        {title}
+      </h2>
+      <h3 className="mb-6 text-xl leading-snug font-semibold text-foreground sm:text-2xl">
+        {question}
+      </h3>
+      <form className="flex flex-col gap-4">
+        <Input {...inputProps} />
+        <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+          <Button
+            type="button"
+            variant="ghost"
+            icon={ArrowLeft}
+            className="order-2 flex-1 justify-center rounded-xl py-3 sm:order-1"
+          >
+            Voltar
+          </Button>
+          <Button
+            type="submit"
+            variant="primary"
+            icon={!submitButtonProps ? ArrowRight : undefined}
+            className="order-1 flex-1 sm:order-1"
+          >
+            {submitButtonProps?.label || 'Próximo'}
+            {submitButtonProps?.emojiIcon}
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }
