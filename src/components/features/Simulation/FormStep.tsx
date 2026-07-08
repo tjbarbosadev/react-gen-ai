@@ -3,6 +3,7 @@ import { type SyntheticEvent, useState } from 'react';
 
 import Button from '@/components/shared/Button';
 import { Input, type InputProps } from '@/components/shared/Input';
+import { formatCurrencyMask } from '@/utils/currency';
 
 export interface FormsStepProps {
   id: string;
@@ -55,7 +56,13 @@ export default function FormStep({
         <Input
           {...inputProps}
           value={inputaValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) =>
+            setInputValue(
+              inputProps.prefix === 'R$'
+                ? formatCurrencyMask(e.target.value)
+                : e.target.value,
+            )
+          }
         />
         <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
           {!hidePreviousButton && (
